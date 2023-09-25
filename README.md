@@ -1,5 +1,5 @@
 # Minikube SDLC tools
-Configuration of SDLC tools on minikube
+This README describes the process for configuring an SDLC tools cluster on minikube.
 
 ## Install minikube
 
@@ -12,7 +12,7 @@ minikube config set disk-size 100G
 
 ## Install Windows tools
 - Install Chocolatey: https://www.studytonight.com/post/install-chocolatey-package-manager-for-windows
-- Install Kubectl: 
+- Install kubectl: 
 - Install Helm: https://www.studytonight.com/post/installing-kubernetes-helm-on-windows
 
 ## Create sdlc-tools namespace
@@ -21,6 +21,9 @@ kubectl create -f .\kubernetes\namespaces\sdlc-tools.yaml
 ```
 
 ## Deploy Jenkins
+
+**Reference:** https://www.jenkins.io/doc/book/installing/kubernetes/
+
 ### Create Peristent Volume
 ```
 kubectl create -f .\kubernetes\volumes\sdlc-jenkins-pv.yaml
@@ -61,3 +64,4 @@ $NODE_IP=$(kubectl get nodes -n sdlc-tools -o jsonpath=$jsonpath)
 echo "http://${NODE_IP}:${NODE_PORT}/login"
 ```
 
+## Deploy Ansible
