@@ -5,7 +5,7 @@ Configuration of SDLC tools on minikube
 
 Instructions for installing minikube: [minikube start](https://minikube.sigs.k8s.io/docs/start/)
 
-Note: Make sure to configure sufficient disk-space for minikube to cater for persistent volumes
+**Note:** Make sure to configure sufficient disk-space for minikube to cater for persistent volumes
 ```
 minikube config set disk-size 100G
 ```
@@ -15,7 +15,7 @@ minikube config set disk-size 100G
 - Install Kubectl: 
 - Install Helm: https://www.studytonight.com/post/installing-kubernetes-helm-on-windows
 
-## Create namespace
+## Create sdlc-tools namespace
 ```
 kubectl create -f .\kubernetes\namespaces\sdlc-tools.yaml
 ```
@@ -25,6 +25,13 @@ kubectl create -f .\kubernetes\namespaces\sdlc-tools.yaml
 ```
 kubectl create -f .\kubernetes\volumes\sdlc-jenkins-pv.yaml
 ```
+
+**Note:** You will need to manually configure the permissions on the volume once it has been created
+```
+minikube ssh
+sudo chown -R 1000:1000 /data/jenkins-volume
+```
+
 
 ### Create Service Account
 ```
