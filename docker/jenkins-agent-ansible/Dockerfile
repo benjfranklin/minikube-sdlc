@@ -1,16 +1,13 @@
-FROM centos:7
+
+FROM ubuntu:22.04
 
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-RUN yum check-update; \
-    yum install -y gcc libffi-devel python3 epel-release; \
-    yum install -y python3-pip; \
-    yum install -y wget; \
-    yum clean all
+RUN apt-add-repository ppa:ansible/ansible; \
+    apt update -y; \
+    apt install -y ansible
 
-RUN pip3 install --upgrade pip; \
-    pip3 install --upgrade virtualenv; \
-    pip3 install jmspath; \
-    pip3 install requests; \
-    python3 -m pip install ansible; \
+RUN apt install -y git; \
+    git config --global user.name "Jenkins"; \
+    git config --global user.email "jenkins@hill.org"
